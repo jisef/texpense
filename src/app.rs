@@ -10,6 +10,8 @@ pub struct App {
     pub running: bool,
     /// counter
     pub counter: u8,
+    pub active_tab: usize,
+    pub tab_titles: Vec<&'static str>,
 }
 
 impl Default for App {
@@ -17,6 +19,8 @@ impl Default for App {
         Self {
             running: true,
             counter: 0,
+            active_tab: 0,
+            tab_titles: vec!["Home", "Statistics"]
         }
     }
 }
@@ -44,6 +48,20 @@ impl App {
     pub fn decrement_counter(&mut self) {
         if let Some(res) = self.counter.checked_sub(1) {
             self.counter = res;
+        }
+    }
+    
+    pub fn next_tab(&mut self) {
+        self.active_tab = (self.active_tab + 1) % self.tab_titles.len();
+    }
+    
+    pub fn previous_tab(&mut self) {
+        if self.active_tab == 0 {
+            self.active_tab = self.tab_titles.len() - 1;
+        } else if self.active_tab != 0 {
+            self.active_tab -= 1;   
+        } else if self.active_tab == self.tab_titles.len() - 1 { 
+            self.active_tab = 0;
         }
     }
 }

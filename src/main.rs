@@ -8,12 +8,15 @@ use crate::{
     handler::handle_key_events,
     tui::Tui,
 };
+use crate::entities::prelude::Account;
 
 pub mod app;
 pub mod event;
 pub mod handler;
 pub mod tui;
 pub mod ui;
+pub mod entities;
+pub mod tab;
 
 #[tokio::main]
 async fn main() -> AppResult<()> {

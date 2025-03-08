@@ -21,6 +21,15 @@ pub fn handle_key_events(key_event: KeyEvent, app: &mut App) -> AppResult<()> {
         KeyCode::Left => {
             app.decrement_counter();
         }
+        KeyCode::Char('1') => {
+            app.active_tab = 0;
+        }
+        KeyCode::Char('2') => {
+            app.active_tab = 1;
+        }
+        KeyCode::Char('3') => {
+            app.active_tab = 2;
+        }
         // Other handlers you could add here.
         _ => {}
     }
