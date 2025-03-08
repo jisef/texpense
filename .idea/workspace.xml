@@ -5,13 +5,23 @@
   </component>
   <component name="CargoProjects">
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+    <cargoProject FILE="$PROJECT_DIR$/migration/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="">
+    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="added base ui">
+      <change afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/account.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/account.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/category.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/category.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/payment.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/payment.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/template.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/template.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/transaction.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/transaction.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tab/home.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tab/home.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,12 +137,36 @@
       <updated>1741340720695</updated>
       <workItem from="1741340721799" duration="396000" />
       <workItem from="1741372954163" duration="586000" />
-      <workItem from="1741373566172" duration="19844000" />
+      <workItem from="1741373566172" duration="24715000" />
     </task>
+    <task id="LOCAL-00001" summary="added base ui">
+      <option name="closed" value="true" />
+      <created>1741462697376</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741462697376</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added base ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="added base ui" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/migration/src/lib.rs</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

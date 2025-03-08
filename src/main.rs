@@ -1,14 +1,13 @@
 use std::io;
-
+use dotenvy::dotenv;
 use ratatui::{backend::CrosstermBackend, Terminal};
-
+use sea_orm::{EntityTrait};
 use crate::{
     app::{App, AppResult},
     event::{Event, EventHandler},
     handler::handle_key_events,
     tui::Tui,
 };
-
 
 pub mod app;
 pub mod event;
@@ -17,9 +16,17 @@ pub mod tui;
 pub mod ui;
 pub mod entities;
 pub mod tab;
+mod db;
 
 #[tokio::main]
 async fn main() -> AppResult<()> {
+    dotenv().ok();
+
+    let db = db::establish_connection().await?;
+    
+    // insert something into db
+    //let insert_result = account::Entity::insert(new_account).exec(&db).await?;
+    
     // Create an application.
     let mut app = App::new();
 
@@ -42,8 +49,7 @@ async fn main() -> AppResult<()> {
             Event::Resize(_, _) => {}
         }
     }
-
-    // Exit the user interface.
+    
     tui.exit()?;
     Ok(())
 }

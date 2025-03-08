@@ -2330,6 +2330,7 @@ name = "texpense"
 version = "0.1.0"
 dependencies = [
  "crossterm",
+ "dotenvy",
  "futures",
  "ratatui",
  "sea-orm",
