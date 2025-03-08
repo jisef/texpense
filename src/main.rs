@@ -8,7 +8,7 @@ use crate::{
     handler::handle_key_events,
     tui::Tui,
 };
-use crate::entities::prelude::Account;
+
 
 pub mod app;
 pub mod event;
