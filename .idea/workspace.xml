@@ -8,20 +8,12 @@
     <cargoProject FILE="$PROJECT_DIR$/migration/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="added base ui">
-      <change afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="add git remote">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/account.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/account.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/category.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/category.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/payment.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/payment.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/template.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/template.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/transaction.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/transaction.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/design-home.excalidraw" beforeDir="false" afterPath="$PROJECT_DIR$/design-home.excalidraw" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tab/home.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tab/home.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tui.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tui.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +31,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "jisef"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:jisef/texpense.git",
+    "accountId": "f08b8519-7ec6-4a65-87d6-db8b720625e3"
+  }
+}]]></component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="0n1kKAyB" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -51,39 +58,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Cargo.Run texpense.executor": "Run",
-    "NIXITCH_NIXPKGS_CONFIG": "",
-    "NIXITCH_NIX_CONF_DIR": "",
-    "NIXITCH_NIX_OTHER_STORES": "",
-    "NIXITCH_NIX_PATH": "",
-    "NIXITCH_NIX_PROFILES": "",
-    "NIXITCH_NIX_REMOTE": "",
-    "NIXITCH_NIX_USER_PROFILE_DIR": "",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.rust.reset.selective.auto.import": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
-    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "org.rust.disableDetachedFileInspection/Users/josef/texpense/src/entities/account.rs": "true",
-    "org.rust.disableDetachedFileInspection/Users/josef/texpense/src/entities/category.rs": "true",
-    "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Cargo.Run texpense.executor&quot;: &quot;Run&quot;,
+    &quot;NIXITCH_NIXPKGS_CONFIG&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_CONF_DIR&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_OTHER_STORES&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_PATH&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_PROFILES&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_REMOTE&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_USER_PROFILE_DIR&quot;: &quot;&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.rust.reset.selective.auto.import&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.disableDetachedFileInspection/Users/josef/texpense/src/entities/account.rs&quot;: &quot;true&quot;,
+    &quot;org.rust.disableDetachedFileInspection/Users/josef/texpense/src/entities/category.rs&quot;: &quot;true&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RsExternalLinterProjectSettings">
     <option name="runOnTheFly" value="true" />
   </component>
@@ -137,7 +144,7 @@
       <updated>1741340720695</updated>
       <workItem from="1741340721799" duration="396000" />
       <workItem from="1741372954163" duration="586000" />
-      <workItem from="1741373566172" duration="24715000" />
+      <workItem from="1741373566172" duration="28389000" />
     </task>
     <task id="LOCAL-00001" summary="added base ui">
       <option name="closed" value="true" />
@@ -147,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741462697376</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add git remote">
+      <option name="closed" value="true" />
+      <created>1741468658100</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741468658100</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,7 +170,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added base ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="added base ui" />
+    <MESSAGE value="add git remote" />
+    <option name="LAST_COMMIT_MESSAGE" value="add git remote" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -13,7 +13,7 @@ use ratatui::{
 };
 
 /// Renders the user interface widgets.
-pub fn render(app: &mut App, frame: &mut Frame) {
+pub async fn render(app: &mut App, frame: &mut Frame<'_>) {
     let size = frame.size();
 
     // Define the title with tab styles
@@ -56,7 +56,7 @@ pub fn render(app: &mut App, frame: &mut Frame) {
 
     // Render content **inside** the block
     match app.active_tab {
-        0 => draw_home(frame, inner_area), // Use the inner area
+        0 => draw_home(frame, inner_area).await, // Use the inner area
         1 => draw_stats(frame, inner_area),
         _ => {}
     }

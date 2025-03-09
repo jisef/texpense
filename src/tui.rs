@@ -51,7 +51,11 @@ impl<B: Backend> Tui<B> {
     /// [`Draw`]: ratatui::Terminal::draw
     /// [`rendering`]: crate::ui::render
     pub fn draw(&mut self, app: &mut App) -> AppResult<()> {
-        self.terminal.draw(|frame| ui::render(app, frame))?;
+        self.terminal.draw(|frame| {
+            tokio::task::block_in_place(|| {
+                tokio::runtime::Handle::current().block_on(ui::render(app, frame));
+            });
+        })?;
         Ok(())
     }
 
