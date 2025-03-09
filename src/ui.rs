@@ -1,8 +1,8 @@
 use crate::app::App;
-use crate::tab::home::draw_home;
+use crate::tab::home::{draw_home, HomeBlock};
 use crate::tab::statistics::draw_stats;
-use ratatui::layout::{Constraint, Layout, Margin, Rect};
-use ratatui::prelude::{Direction, Span};
+use ratatui::layout::Rect;
+use ratatui::prelude::Span;
 use ratatui::style::{Modifier, Stylize};
 use ratatui::text::Line;
 use ratatui::widgets::Borders;
@@ -48,7 +48,7 @@ pub async fn render(app: &mut App, frame: &mut Frame<'_>) {
 
     // Compute the inner area (exclude 1px border on all sides)
     let inner_area = Rect {
-        x: size.x + 1,               // Move right
+        x: size.x + 2,               // Move right
         y: size.y + 1,               // Move down
         width: size.width.saturating_sub(2),  // Shrink width
         height: size.height.saturating_sub(2), // Shrink height
@@ -56,8 +56,8 @@ pub async fn render(app: &mut App, frame: &mut Frame<'_>) {
 
     // Render content **inside** the block
     match app.active_tab {
-        0 => draw_home(frame, inner_area).await, // Use the inner area
-        1 => draw_stats(frame, inner_area),
+        0 => draw_home(frame, inner_area, &app).await, // Use the inner area
+        1 => draw_stats(frame, inner_area), //todo!()
         _ => {}
     }
 }

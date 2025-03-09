@@ -8,11 +8,13 @@
     <cargoProject FILE="$PROJECT_DIR$/migration/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="add git remote">
+    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="added accounts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design-home.excalidraw" beforeDir="false" afterPath="$PROJECT_DIR$/design-home.excalidraw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handler.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tab/home.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tab/home.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tui.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tui.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tab/statistics.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tab/statistics.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +146,7 @@
       <updated>1741340720695</updated>
       <workItem from="1741340721799" duration="396000" />
       <workItem from="1741372954163" duration="586000" />
-      <workItem from="1741373566172" duration="28389000" />
+      <workItem from="1741373566172" duration="34902000" />
     </task>
     <task id="LOCAL-00001" summary="added base ui">
       <option name="closed" value="true" />
@@ -162,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741468658100</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added accounts">
+      <option name="closed" value="true" />
+      <created>1741530171145</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741530171145</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +181,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added base ui" />
     <MESSAGE value="add git remote" />
-    <option name="LAST_COMMIT_MESSAGE" value="add git remote" />
+    <MESSAGE value="added accounts" />
+    <option name="LAST_COMMIT_MESSAGE" value="added accounts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

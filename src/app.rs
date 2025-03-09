@@ -1,67 +1,77 @@
 use std::error;
+use crate::tab::home::HomeBlock;
+use crate::tab::statistics::StatisticsBlock;
 
 /// Application result type.
 pub type AppResult<T> = std::result::Result<T, Box<dyn error::Error>>;
 
 /// Application.
-#[derive(Debug)]
-pub struct App {
-    /// Is the application running?
-    pub running: bool,
-    /// counter
-    pub counter: u8,
-    pub active_tab: usize,
-    pub tab_titles: Vec<&'static str>,
-}
 
-impl Default for App {
-    fn default() -> Self {
-        Self {
-            running: true,
-            counter: 0,
-            active_tab: 0,
-            tab_titles: vec!["Home", "Statistics"]
-        }
-    }
+pub struct App {
+    pub running: bool,
+    pub active_tab: usize, // 0 = first tab, 1 = second tab, etc.
+    pub tab_titles: Vec<String>,
+    pub home_manager: TabManager<HomeBlock>,
+    pub statistics_manager: TabManager<StatisticsBlock>,
 }
 
 impl App {
-    /// Constructs a new instance of [`App`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    /// Handles the tick event of the terminal.
     pub fn tick(&self) {}
 
-    /// Set running to false to quit the application.
+   
+    pub fn new() -> Self {
+        let titles = vec![
+            "Home".to_string(), 
+            "Statistics".to_string(),
+        ];
+        
+        Self {
+            running: true,
+            active_tab: 0,
+            tab_titles: titles.clone(),
+            home_manager: TabManager::new(HomeBlock::People),
+            statistics_manager: TabManager::new(StatisticsBlock::Overview),
+        }
+    }
+
     pub fn quit(&mut self) {
         self.running = false;
     }
 
-    pub fn increment_counter(&mut self) {
-        if let Some(res) = self.counter.checked_add(1) {
-            self.counter = res;
-        }
-    }
-
-    pub fn decrement_counter(&mut self) {
-        if let Some(res) = self.counter.checked_sub(1) {
-            self.counter = res;
-        }
-    }
-    
     pub fn next_tab(&mut self) {
         self.active_tab = (self.active_tab + 1) % self.tab_titles.len();
     }
-    
+
     pub fn previous_tab(&mut self) {
         if self.active_tab == 0 {
             self.active_tab = self.tab_titles.len() - 1;
-        } else if self.active_tab != 0 {
-            self.active_tab -= 1;   
-        } else if self.active_tab == self.tab_titles.len() - 1 { 
-            self.active_tab = 0;
+        } else {
+            self.active_tab -= 1;
         }
     }
 }
+
+
+pub trait TabBlock {
+    fn next(&self) -> Self;
+    fn previous(&self) -> Self;
+}
+
+pub struct TabManager<T: TabBlock> {
+    pub current_block: T,
+}
+
+impl<T: TabBlock> TabManager<T> {
+    pub fn new(start_block: T) -> Self {
+        Self { current_block: start_block }
+    }
+
+    pub fn next_block(&mut self) {
+        self.current_block = self.current_block.next();
+    }
+
+    pub fn previous_block(&mut self) {
+        self.current_block = self.current_block.previous();
+    }
+}
+

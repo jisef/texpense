@@ -24,9 +24,6 @@ async fn main() -> AppResult<()> {
 
     let db = db::establish_connection().await?;
     
-    // insert something into db
-    //let insert_result = account::Entity::insert(new_account).exec(&db).await?;
-    
     // Create an application.
     let mut app = App::new();
 

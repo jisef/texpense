@@ -4,6 +4,32 @@ use ratatui::prelude::Direction;
 use ratatui::style::{Style, Stylize};
 use ratatui::widgets::{BarChart, Block, Borders, Chart, Paragraph};
 use ratatui::widgets::canvas::Rectangle;
+use crate::app::TabBlock;
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum StatisticsBlock {
+    Overview,
+    Trends,
+    History,
+}
+
+impl TabBlock for StatisticsBlock {
+    fn next(&self) -> Self {
+        match self {
+            StatisticsBlock::Overview => StatisticsBlock::Trends,
+            StatisticsBlock::Trends => StatisticsBlock::History,
+            StatisticsBlock::History => StatisticsBlock::Overview, // Wrap around
+        }
+    }
+
+    fn previous(&self) -> Self {
+        match self {
+            StatisticsBlock::Overview => StatisticsBlock::History, // Wrap around
+            StatisticsBlock::Trends => StatisticsBlock::Overview,
+            StatisticsBlock::History => StatisticsBlock::Trends,
+        }
+    }
+}
 
 pub fn draw_stats(fram: &mut Frame, area: Rect) {
     let layout = Layout::default().direction(Direction::Horizontal);
