@@ -5,8 +5,10 @@ use ratatui::prelude::Direction;
 use ratatui::style::{Color, Style};
 use ratatui::widgets::{Block, BorderType, Borders, List, ListItem};
 use sea_orm::{EntityTrait};
+use account::Entity;
 use crate::app::{App, TabBlock, TabManager};
 use crate::db;
+use crate::db::get_db_connection;
 use crate::entities::account;
 use crate::tab::home;
 
@@ -111,11 +113,8 @@ fn draw_templates<'a>() -> Block<'a> {
 
 async fn draw_accounts<'a>(active_block: HomeBlock) -> List<'a> {
     // get all accounts
-    let db =  match db::establish_connection().await {
-        Ok(db) => db,
-        Err(x) => panic!("Connection couldnt be established {}", x),
-    };
-    let accounts = match account::Entity::find().all(&db).await {
+    let db = get_db_connection().await;
+    let accounts = match Entity::find().all(db).await {
         Ok(x) => x,
         Err(x) => panic!("Account not found {}", x),
     };

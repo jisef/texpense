@@ -21,8 +21,11 @@ mod db;
 #[tokio::main]
 async fn main() -> AppResult<()> {
     dotenv().ok();
-
-    let db = db::establish_connection().await?;
+    let _ = db::initialize_db_connection().await?;
+   
+    
+    
+    let db = db::get_db_connection().await;
     
     // Create an application.
     let mut app = App::new();

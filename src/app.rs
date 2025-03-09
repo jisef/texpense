@@ -1,10 +1,13 @@
 use std::error;
+use std::sync::Arc;
 use crossterm::event::KeyEvent;
+use sea_orm::{DatabaseConnection, DbConn};
+use crate::db;
 use crate::tab::home::{handle_home_key_event, HomeBlock};
 use crate::tab::statistics::{handle_statistics_key_event, StatisticsBlock};
 
 /// Application result type.
-pub type AppResult<T> = std::result::Result<T, Box<dyn error::Error>>;
+pub type AppResult<T> = Result<T, Box<dyn error::Error>>;
 
 /// Application.
 
@@ -18,14 +21,13 @@ pub struct App {
 
 impl App {
     pub fn tick(&self) {}
-
-
+    
     pub fn new() -> Self {
         let titles = vec![
             "Home".to_string(),
             "Statistics".to_string(),
         ];
-
+        
         Self {
             running: true,
             active_tab: 0,
