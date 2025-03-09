@@ -1,10 +1,12 @@
+use crossterm::event::{KeyCode, KeyEvent};
 use ratatui::Frame;
 use ratatui::layout::{Layout, Rect};
 use ratatui::prelude::Direction;
 use ratatui::style::{Style, Stylize};
 use ratatui::widgets::{BarChart, Block, Borders, Chart, Paragraph};
 use ratatui::widgets::canvas::Rectangle;
-use crate::app::TabBlock;
+use crate::app::{TabBlock, TabManager};
+use crate::tab::home::HomeBlock;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum StatisticsBlock {
@@ -28,6 +30,24 @@ impl TabBlock for StatisticsBlock {
             StatisticsBlock::Trends => StatisticsBlock::Overview,
             StatisticsBlock::History => StatisticsBlock::Trends,
         }
+    }
+
+    fn key_bindings(&self) -> &'static str {
+        todo!()
+    }
+}
+
+pub fn handle_statistics_key_event(manager: &mut TabManager<StatisticsBlock>, key: KeyEvent) {
+    match key.code {
+        KeyCode::Tab => manager.next_block(),
+        KeyCode::BackTab => manager.previous_block(),
+
+        // Example bindings for statistics tab
+        KeyCode::Char('s') if manager.current_block == StatisticsBlock::Overview => {
+            println!("Showing statistics overview...");
+        }
+
+        _ => {}
     }
 }
 

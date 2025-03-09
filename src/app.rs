@@ -1,6 +1,7 @@
 use std::error;
-use crate::tab::home::HomeBlock;
-use crate::tab::statistics::StatisticsBlock;
+use crossterm::event::KeyEvent;
+use crate::tab::home::{handle_home_key_event, HomeBlock};
+use crate::tab::statistics::{handle_statistics_key_event, StatisticsBlock};
 
 /// Application result type.
 pub type AppResult<T> = std::result::Result<T, Box<dyn error::Error>>;
@@ -18,13 +19,13 @@ pub struct App {
 impl App {
     pub fn tick(&self) {}
 
-   
+
     pub fn new() -> Self {
         let titles = vec![
-            "Home".to_string(), 
+            "Home".to_string(),
             "Statistics".to_string(),
         ];
-        
+
         Self {
             running: true,
             active_tab: 0,
@@ -49,12 +50,22 @@ impl App {
             self.active_tab -= 1;
         }
     }
+
+    pub fn handle_key_events(&mut self, key: KeyEvent)  {
+        match self.active_tab {
+            0 => handle_home_key_event(&mut self.home_manager, key),
+            1 => handle_statistics_key_event(&mut self.statistics_manager, key),
+            _ => {}
+        }
+    }
 }
+
 
 
 pub trait TabBlock {
     fn next(&self) -> Self;
     fn previous(&self) -> Self;
+    fn key_bindings(&self) -> &'static str;
 }
 
 pub struct TabManager<T: TabBlock> {

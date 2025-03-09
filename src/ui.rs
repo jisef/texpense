@@ -57,7 +57,7 @@ pub async fn render(app: &mut App, frame: &mut Frame<'_>) {
     // Render content **inside** the block
     match app.active_tab {
         0 => draw_home(frame, inner_area, &app).await, // Use the inner area
-        1 => draw_stats(frame, inner_area), //todo!()
+        1 => draw_stats(frame, inner_area), 
         _ => {}
     }
 }

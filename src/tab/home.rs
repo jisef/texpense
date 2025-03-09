@@ -1,10 +1,11 @@
+use crossterm::event::{KeyCode, KeyEvent};
 use ratatui::Frame;
 use ratatui::layout::{Constraint, Layout, Rect};
 use ratatui::prelude::Direction;
 use ratatui::style::{Color, Style};
 use ratatui::widgets::{Block, BorderType, Borders, List, ListItem};
 use sea_orm::{EntityTrait};
-use crate::app::{App, TabBlock};
+use crate::app::{App, TabBlock, TabManager};
 use crate::db;
 use crate::entities::account;
 use crate::tab::home;
@@ -40,6 +41,16 @@ impl TabBlock for HomeBlock {
             HomeBlock::Calendar => HomeBlock::Payments,
             HomeBlock::Templates => HomeBlock::Calendar,
             HomeBlock::Accounts => HomeBlock::Templates,
+        }
+    }
+
+    fn key_bindings(&self) -> &'static str {
+        match self { 
+            HomeBlock::People => " [a] Add | [e] Edit",
+            HomeBlock::Payments => " [b] Remove | [c] Swap",
+            HomeBlock::Calendar => "",
+            HomeBlock::Accounts => "",
+            HomeBlock::Templates => "",
         }
     }
 }
@@ -128,7 +139,7 @@ async fn draw_accounts<'a>(active_block: HomeBlock) -> List<'a> {
 
 
 
-    //todo!("TAB für durchwechseln geht noch nicht");
+    
 
 
     list
@@ -151,13 +162,56 @@ pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
     let expenses_block = Block::new()
         .borders(Borders::ALL)
         .border_type(BorderType::Rounded)
-        .title(" Monthly expenses ")
+        .title(format!(" Monthly Expenses | {}", active_block.key_bindings())) // Show key bindings
         .style(if active_block == HomeBlock::People { home::selected } else { Style::default() });
 
     let payments_block = draw_payments()
+        .title(format!(" Payments | {}", HomeBlock::Payments.key_bindings())) // Always display
         .style(if active_block == HomeBlock::Payments { home::selected } else { Style::default() });
 
     frame.render_widget(expenses_block, left_layout[0]);
     frame.render_widget(payments_block, left_layout[1]);
     frame.render_widget(accounts, left_layout[2]);
+}
+
+
+pub fn handle_home_key_event(manager: &mut TabManager<HomeBlock>, key: KeyEvent) {
+    match key.code {
+        KeyCode::Tab => manager.next_block(),
+        KeyCode::BackTab => manager.previous_block(),
+
+        // Custom key bindings per block
+        KeyCode::Char('p') if manager.current_block == HomeBlock::People => {
+            println!("Adding a person...");
+        }
+        KeyCode::Char('d') if manager.current_block == HomeBlock::People => {
+            println!("Deleting a person...");
+        }
+        KeyCode::Char('n') if manager.current_block == HomeBlock::Payments => {
+            println!("Creating a new payment...");
+        }
+        KeyCode::Char('v') if manager.current_block == HomeBlock::Payments => {
+            println!("Viewing payment details...");
+        }
+        KeyCode::Char('a') if manager.current_block == HomeBlock::Calendar => {
+            println!("Adding an event to the calendar...");
+        }
+        KeyCode::Char('e') if manager.current_block == HomeBlock::Calendar => {
+            println!("Editing calendar event...");
+        }
+        KeyCode::Char('t') if manager.current_block == HomeBlock::Templates => {
+            println!("Loading a template...");
+        }
+        KeyCode::Char('s') if manager.current_block == HomeBlock::Templates => {
+            println!("Saving a template...");
+        }
+        KeyCode::Char('r') if manager.current_block == HomeBlock::Accounts => {
+            println!("Refreshing accounts...");
+        }
+        KeyCode::Char('m') if manager.current_block == HomeBlock::Accounts => {
+            println!("Managing accounts...");
+        }
+
+        _ => {}
+    }
 }

@@ -8,11 +8,9 @@
     <cargoProject FILE="$PROJECT_DIR$/migration/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="added accounts">
+    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="added tabing between blocks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handler.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tab/home.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tab/home.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tab/statistics.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tab/statistics.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui.rs" afterDir="false" />
@@ -146,7 +144,7 @@
       <updated>1741340720695</updated>
       <workItem from="1741340721799" duration="396000" />
       <workItem from="1741372954163" duration="586000" />
-      <workItem from="1741373566172" duration="34902000" />
+      <workItem from="1741373566172" duration="35684000" />
     </task>
     <task id="LOCAL-00001" summary="added base ui">
       <option name="closed" value="true" />
@@ -172,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741530171145</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added tabing between blocks">
+      <option name="closed" value="true" />
+      <created>1741540420436</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741540420436</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +188,8 @@
     <MESSAGE value="added base ui" />
     <MESSAGE value="add git remote" />
     <MESSAGE value="added accounts" />
-    <option name="LAST_COMMIT_MESSAGE" value="added accounts" />
+    <MESSAGE value="added tabing between blocks" />
+    <option name="LAST_COMMIT_MESSAGE" value="added tabing between blocks" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
