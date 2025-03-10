@@ -8,14 +8,8 @@
     <cargoProject FILE="$PROJECT_DIR$/migration/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="added global db conn">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e08f4c8a-b70d-4d2e-aba4-5176a87758a9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e08f4c8a-b70d-4d2e-aba4-5176a87758a9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e08f4c8a-b70d-4d2e-aba4-5176a87758a9/storage_v2/_src_/database/postgres.edMnLQ/schema/texpense.ZB39ww.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e08f4c8a-b70d-4d2e-aba4-5176a87758a9/storage_v2/_src_/database/postgres.edMnLQ/schema/texpense.ZB39ww.meta" afterDir="false" />
+    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="updated home function and drawing functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/payment.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/payment.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tab/home.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tab/home.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui.rs" afterDir="false" />
     </list>
@@ -157,7 +151,7 @@
       <workItem from="1741546543742" duration="76000" />
       <workItem from="1741552303498" duration="2773000" />
       <workItem from="1741555089021" duration="992000" />
-      <workItem from="1741588649457" duration="3875000" />
+      <workItem from="1741588649457" duration="8681000" />
     </task>
     <task id="LOCAL-00001" summary="added base ui">
       <option name="closed" value="true" />
@@ -207,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741555411431</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="updated home function and drawing functions">
+      <option name="closed" value="true" />
+      <created>1741596729416</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741596729416</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +233,8 @@
     <MESSAGE value="added tabing between blocks" />
     <MESSAGE value="added custom keybinds" />
     <MESSAGE value="added global db conn" />
-    <option name="LAST_COMMIT_MESSAGE" value="added global db conn" />
+    <MESSAGE value="updated home function and drawing functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated home function and drawing functions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

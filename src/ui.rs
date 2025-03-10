@@ -48,7 +48,7 @@ pub async fn render(app: &mut App, frame: &mut Frame<'_>) {
 
     // Compute the inner area (exclude 1px border on all sides)
     let inner_area = Rect {
-        x: size.x + 2,               // Move right
+        x: size.x + 2,               // Move right todo!("fix borders )
         y: size.y + 1,               // Move down
         width: size.width.saturating_sub(2),  // Shrink width
         height: size.height.saturating_sub(2), // Shrink height
