@@ -83,9 +83,9 @@ pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
     let left_layout = Layout::default()
         .direction(Direction::Vertical)
         .constraints(vec![
-            Constraint::Percentage(33),
-            Constraint::Percentage(33),
-            Constraint::Percentage(33)
+            Constraint::Percentage(32),
+            Constraint::Percentage(32),
+            Constraint::Percentage(36)
         ])
         .split(main_layout[0]);
 
