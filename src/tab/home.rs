@@ -10,7 +10,7 @@ use sea_orm::{EntityTrait};
 use account::Entity;
 use crate::{db::get_db_connection, app::{App, TabBlock, TabManager}, entities::*, tab::home, entities};
 
-pub const selected: Style = Style::new().fg(Color::Cyan);
+pub const SELECTED_BLOCK: Style = Style::new().fg(Color::Cyan);
 
 /// Enum to toggle though the blocks
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -59,7 +59,7 @@ pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
 
     let default_block = Block::default().borders(Borders::ALL).border_type(BorderType::Rounded);
 
-    /// .style( if active_block == HomeBlock::Accounts {home::selected} else {Style::default()});
+    // .style( if active_block == HomeBlock::Accounts {home::selected} else {Style::default()});
     let accounts = draw_accounts(active_block, default_block.clone());
     let payments = draw_payments(active_block, default_block.clone());
     let calendar = draw_calendar(active_block, default_block.clone());
@@ -103,12 +103,12 @@ pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
 }
 
 async fn draw_peopple<'a>(active_block: HomeBlock, default_block: Block<'a>) -> Block<'a> {
-    let block = default_block.title(" People ").style( if active_block == HomeBlock::People {home::selected} else {Style::default()});
+    let block = default_block.title(" People ").style( if active_block == HomeBlock::People {home::SELECTED_BLOCK } else {Style::default()});
     block
 }
 
 async fn draw_payments<'a>(active_block: HomeBlock, block: Block<'a>) -> Block<'a> {
-    let block = block.title(" Payments ").style( if active_block == HomeBlock::Payments {home::selected} else {Style::default()});
+    let block = block.title(" Payments ").style( if active_block == HomeBlock::Payments {home::SELECTED_BLOCK } else {Style::default()});
     
     
     
@@ -120,7 +120,7 @@ async fn draw_templates<'a>(active_block: HomeBlock, block: Block<'a>) -> Block<
     
     let db = get_db_connection();
     
-    let b = block.title(" Templates ").style( if active_block == HomeBlock::Templates {home::selected} else {Style::default()});
+    let b = block.title(" Templates ").style( if active_block == HomeBlock::Templates {home::SELECTED_BLOCK } else {Style::default()});
     let templates = match entities::template::Entity::find().all(db.await).await { 
         Ok(t) => t, 
         Err(x) => panic!("Error occured while retrieving templates: {}", x),
@@ -148,7 +148,7 @@ async fn draw_accounts<'a>(active_block: HomeBlock, block: Block<'a>) -> List<'a
         })
         .collect();
 
-    let block = block.title(" Accounts ").style( if active_block == HomeBlock::Accounts {home::selected} else {Style::default()});
+    let block = block.title(" Accounts ").style( if active_block == HomeBlock::Accounts {home::SELECTED_BLOCK } else {Style::default()});
    
     
     let list = List::new(list_items).block(block);
@@ -204,7 +204,7 @@ pub fn handle_home_key_event(manager: &mut TabManager<HomeBlock>, key: KeyEvent)
 }
 
 async fn draw_calendar<'a>(active_block: HomeBlock, block: Block<'a>) -> Block<'a> {
-    let block = block.title(" Calendar ").style( if active_block == HomeBlock::Calendar {home::selected} else {Style::default()});
+    let block = block.title(" Calendar ").style( if active_block == HomeBlock::Calendar {home::SELECTED_BLOCK } else {Style::default()});
     
     block
 }

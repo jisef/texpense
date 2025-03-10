@@ -1,7 +1,6 @@
 use std::io;
 use dotenvy::dotenv;
 use ratatui::{backend::CrosstermBackend, Terminal};
-use sea_orm::{EntityTrait};
 use crate::{
     app::{App, AppResult},
     event::{Event, EventHandler},

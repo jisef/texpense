@@ -1,8 +1,5 @@
 use std::error;
-use std::sync::Arc;
 use crossterm::event::KeyEvent;
-use sea_orm::{DatabaseConnection, DbConn};
-use crate::db;
 use crate::tab::home::{handle_home_key_event, HomeBlock};
 use crate::tab::statistics::{handle_statistics_key_event, StatisticsBlock};
 

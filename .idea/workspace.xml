@@ -8,9 +8,12 @@
     <cargoProject FILE="$PROJECT_DIR$/migration/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="updated home function and drawing functions">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="reformatted home function">
+      <change beforePath="$PROJECT_DIR$/src/app.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handler.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tab/home.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tab/home.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tab/statistics.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/tab/statistics.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +154,7 @@
       <workItem from="1741546543742" duration="76000" />
       <workItem from="1741552303498" duration="2773000" />
       <workItem from="1741555089021" duration="992000" />
-      <workItem from="1741588649457" duration="8681000" />
+      <workItem from="1741588649457" duration="9306000" />
     </task>
     <task id="LOCAL-00001" summary="added base ui">
       <option name="closed" value="true" />
@@ -209,7 +212,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741596729416</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="layout bugfix">
+      <option name="closed" value="true" />
+      <created>1741607448733</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741607448733</updated>
+    </task>
+    <task id="LOCAL-00009" summary="reformatted home function">
+      <option name="closed" value="true" />
+      <created>1741607518104</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1741607518104</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +253,9 @@
     <MESSAGE value="added custom keybinds" />
     <MESSAGE value="added global db conn" />
     <MESSAGE value="updated home function and drawing functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated home function and drawing functions" />
+    <MESSAGE value="layout bugfix" />
+    <MESSAGE value="reformatted home function" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformatted home function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

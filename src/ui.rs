@@ -1,9 +1,9 @@
 use crate::app::App;
-use crate::tab::home::{draw_home, HomeBlock};
+use crate::tab::home::{draw_home };
 use crate::tab::statistics::draw_stats;
 use ratatui::layout::Rect;
 use ratatui::prelude::Span;
-use ratatui::style::{Modifier, Stylize};
+use ratatui::style::{Modifier};
 use ratatui::text::Line;
 use ratatui::widgets::Borders;
 use ratatui::{
@@ -14,7 +14,7 @@ use ratatui::{
 
 /// Renders the user interface widgets.
 pub async fn render(app: &mut App, frame: &mut Frame<'_>) {
-    let size = frame.size();
+    let size = frame.area();
 
     // Define the title with tab styles
     let title = Line::from(vec![
