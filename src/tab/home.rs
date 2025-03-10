@@ -7,12 +7,15 @@ use ratatui::widgets::{Block, BorderType, Borders, List, ListItem};
 use sea_orm::{EntityTrait};
 use account::Entity;
 use crate::app::{App, TabBlock, TabManager};
-use crate::db;
+use crate::{db, entities};
 use crate::db::get_db_connection;
-use crate::entities::account;
+use crate::entities::*;
 use crate::tab::home;
 
 pub const selected: Style = Style::new().fg(Color::Cyan);
+
+
+
 
 /// Enum to toggle though the blocks
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -57,58 +60,76 @@ impl TabBlock for HomeBlock {
     }
 }
 
+pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
+    let active_block = app.home_manager.current_block; // Get active block
+
+    let default_block = Block::default().borders(Borders::ALL).border_type(BorderType::Rounded).style( if active_block == HomeBlock::Accounts {home::selected} else {Style::default()});
+
+
+    let accounts = draw_accounts(active_block);
+    let payments = draw_payments(active_block);
+    let calendar = draw_calendar(active_block);
+    let templates = draw_templates(active_block);
 
 
 
-
-/*pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, active_block:HomeBlock) {
-    let accounts = draw_accounts(active_block).await;
-
-    let main_layout = Layout::default().direction(Direction::Horizontal).constraints(vec![
-        Constraint::Percentage(20),
-        Constraint::Percentage(80),
-    ]).split(area);
+    let main_layout = Layout::default()
+        .direction(Direction::Horizontal)
+        .constraints(vec![
+            Constraint::Percentage(30),
+            Constraint::Percentage(70)])
+        .split(area);
 
     let left_layout = Layout::default()
         .direction(Direction::Vertical)
-        .constraints(vec![ Constraint::Percentage(33),
+        .constraints(vec![
             Constraint::Percentage(33),
             Constraint::Percentage(33),
-        ]).split(main_layout[0]);
+            Constraint::Percentage(33)
+        ])
+        .split(main_layout[0]);
 
     let right_layout = Layout::default()
         .direction(Direction::Vertical)
         .constraints(vec![
-            Constraint::Percentage(50),
-            Constraint::Percentage(15),
-            Constraint::Percentage(35),
-        ]).split(main_layout[1]);
-    
-    let block = Block::new()
-        .borders(Borders::ALL)
-        .border_type(BorderType::Rounded)
-        .title(" Monthly expenses ");
+            Constraint::Percentage(30),
+            Constraint::Percentage(70),
+        ])
+        .split(main_layout[1]);
 
 
+    // RIGHT
+    frame.render_widget(payments.await, right_layout[1]);
+
+    // LEFT
+    frame.render_widget(templates.await, left_layout[2]);
+    frame.render_widget(accounts.await, left_layout[1]);
+    frame.render_widget(calendar.await, left_layout[0]);
+}
 
 
-    frame.render_widget(block, left_layout[0]);
-    frame.render_widget(accounts,left_layout[1] );
-
-
-}*/
-fn draw_payments<'a>() -> Block<'a> {
+async fn draw_payments<'a>(active_block: HomeBlock) -> Block<'a> {
        Block::default()
            .borders(Borders::ALL)
            .border_type(BorderType::Rounded)
            .title(" Payments ")
+    
+    //todo!("Block style definde as const")
 }
 
-fn draw_templates<'a>() -> Block<'a> {
-    Block::default()
-        .borders(Borders::ALL)
-        .border_type(BorderType::Rounded)
-        .title(" Templates ")
+async fn draw_templates<'a>(active_block: HomeBlock) -> Block<'a> {
+    
+    // todo!("implement")
+    let db = get_db_connection();
+    
+    let b = Block::default().borders(Borders::ALL).border_type(BorderType::Rounded).title(" Templates ");
+    
+    
+    let templates = match entities::template::Entity::find().all(db.await).await { 
+        Ok(t) => t, 
+        Err(x) => panic!("Error occured while retrieving templates: {}", x),
+    };
+    b
 }
 
 async fn draw_accounts<'a>(active_block: HomeBlock) -> List<'a> {
@@ -142,35 +163,6 @@ async fn draw_accounts<'a>(active_block: HomeBlock) -> List<'a> {
 
 
     list
-}
-
-pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
-    let active_block = app.home_manager.current_block; // Get active block
-    let accounts = draw_accounts(active_block).await;
-
-    let main_layout = Layout::default()
-        .direction(Direction::Horizontal)
-        .constraints(vec![Constraint::Percentage(20), Constraint::Percentage(80)])
-        .split(area);
-
-    let left_layout = Layout::default()
-        .direction(Direction::Vertical)
-        .constraints(vec![Constraint::Percentage(33), Constraint::Percentage(33), Constraint::Percentage(33)])
-        .split(main_layout[0]);
-
-    let expenses_block = Block::new()
-        .borders(Borders::ALL)
-        .border_type(BorderType::Rounded)
-        .title(format!(" Monthly Expenses | {}", active_block.key_bindings())) // Show key bindings
-        .style(if active_block == HomeBlock::People { home::selected } else { Style::default() });
-
-    let payments_block = draw_payments()
-        .title(format!(" Payments | {}", HomeBlock::Payments.key_bindings())) // Always display
-        .style(if active_block == HomeBlock::Payments { home::selected } else { Style::default() });
-
-    frame.render_widget(expenses_block, left_layout[0]);
-    frame.render_widget(payments_block, left_layout[1]);
-    frame.render_widget(accounts, left_layout[2]);
 }
 
 
@@ -213,4 +205,15 @@ pub fn handle_home_key_event(manager: &mut TabManager<HomeBlock>, key: KeyEvent)
 
         _ => {}
     }
+}
+
+
+async fn draw_calendar<'a>(active_block: HomeBlock) -> Block<'a> {
+    let block = Block::default();
+    
+    
+    
+    
+    
+    block
 }
