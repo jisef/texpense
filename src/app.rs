@@ -18,7 +18,6 @@ pub struct App {
 
 impl App {
     pub fn tick(&self) {}
-    
     pub fn new() -> Self {
         let titles = vec![
             "Home".to_string(),
@@ -29,7 +28,7 @@ impl App {
             running: true,
             active_tab: 0,
             tab_titles: titles.clone(),
-            home_manager: TabManager::new(HomeBlock::People),
+            home_manager: TabManager::new(HomeBlock::Calendar),
             statistics_manager: TabManager::new(StatisticsBlock::Overview),
         }
     }

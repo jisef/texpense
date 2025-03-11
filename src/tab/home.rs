@@ -4,9 +4,14 @@ use ratatui::{
     layout::{Constraint, Layout, Rect},
     prelude::Direction,
     style::{Color, Style},
-    widgets::{Block, BorderType, Borders, List, ListItem}
+    widgets::{Block, BorderType, Borders}
 };
+
+use ratatui::style::Stylize;
+use ratatui::widgets::{Cell, Row, Table};
+use ratatui::widgets::calendar::{CalendarEventStore, Monthly};
 use sea_orm::{EntityTrait};
+use time::{OffsetDateTime};
 use account::Entity;
 use crate::{db::get_db_connection, app::{App, TabBlock, TabManager}, entities::*, tab::home, entities};
 
@@ -58,13 +63,12 @@ pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
     let active_block = app.home_manager.current_block; // Get active block
 
     let default_block = Block::default().borders(Borders::ALL).border_type(BorderType::Rounded);
-
-    // .style( if active_block == HomeBlock::Accounts {home::selected} else {Style::default()});
+    
     let accounts = draw_accounts(active_block, default_block.clone());
     let payments = draw_payments(active_block, default_block.clone());
     let calendar = draw_calendar(active_block, default_block.clone());
     let templates = draw_templates(active_block, default_block.clone());
-    let people = draw_peopple(active_block, default_block.clone());
+    let people = draw_people(active_block, default_block.clone());
     
     let main_layout = Layout::default()
         .direction(Direction::Horizontal)
@@ -89,8 +93,7 @@ pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
             Constraint::Percentage(70),
         ])
         .split(main_layout[1]);
-
-
+    
     // RIGHT
     frame.render_widget(templates.await, right_layout[0]);
     frame.render_widget(payments.await, right_layout[1]);
@@ -102,22 +105,45 @@ pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
 
 }
 
-async fn draw_peopple<'a>(active_block: HomeBlock, default_block: Block<'a>) -> Block<'a> {
+async fn draw_people<'a>(active_block: HomeBlock, default_block: Block<'a>) -> Block<'a> {
     let block = default_block.title(" People ").style( if active_block == HomeBlock::People {home::SELECTED_BLOCK } else {Style::default()});
+
     block
 }
 
-async fn draw_payments<'a>(active_block: HomeBlock, block: Block<'a>) -> Block<'a> {
+async fn draw_payments<'a>(active_block: HomeBlock, block: Block<'a>) -> Table<'a> {
+    let db  = get_db_connection().await;
+    let payments = payment::Entity::find().all(db);
+    
     let block = block.title(" Payments ").style( if active_block == HomeBlock::Payments {home::SELECTED_BLOCK } else {Style::default()});
+    let width = vec![
+        Constraint::Percentage(30),
+        Constraint::Percentage(20),
+        Constraint::Percentage(50)
+    ];
     
+    let payments = match payments.await {
+        Ok(x) => x,
+        Err(x) => panic!("Account not found {}", x),
+    };
+    let rows:Vec<Row> = payments.iter().map(|x| Row::new(vec![
+        Cell::new(x.label.clone().to_string()),
+        Cell::new(x.amount.clone().to_string()),
+        Cell::new(x.description.clone().unwrap_or_default()),
+    ])).collect();
     
-    
-    block
+    let table = Table::new(rows, width).header(Row::new(vec![
+        Cell::from(" Label "),
+        Cell::from(" Amount "),
+        Cell::from(" Description ")
+    ])).block(block);
+
+
+
+    table
 }
 
 async fn draw_templates<'a>(active_block: HomeBlock, block: Block<'a>) -> Block<'a> {
-    
-    
     let db = get_db_connection();
     
     let b = block.title(" Templates ").style( if active_block == HomeBlock::Templates {home::SELECTED_BLOCK } else {Style::default()});
@@ -128,7 +154,7 @@ async fn draw_templates<'a>(active_block: HomeBlock, block: Block<'a>) -> Block<
     b
 }
 
-async fn draw_accounts<'a>(active_block: HomeBlock, block: Block<'a>) -> List<'a> {
+async fn draw_accounts<'a>(active_block: HomeBlock, block: Block<'a>) -> Table<'a> {
     // get all accounts
     let db = get_db_connection().await;
     let accounts = match Entity::find().all(db).await {
@@ -136,34 +162,36 @@ async fn draw_accounts<'a>(active_block: HomeBlock, block: Block<'a>) -> List<'a
         Err(x) => panic!("Account not found {}", x),
     };
 
-    // Convert accounts into list items todo!("noch ändern und verschönern")
-    let list_items: Vec<ListItem> = accounts
-        .iter()
-        .map(|acc| {
-            let name = acc.name.clone().unwrap_or_else(|| "Unnamed".to_string());
-            let amount = acc.amount.map_or("0.00".to_string(), |amt| amt.to_string());
-            let description = acc.description.clone().unwrap_or_else(|| "No description".to_string());
 
-            ListItem::new(format!(" {},  {},  {}", name, amount, description))
-        })
-        .collect();
+    let rows: Vec<Row> = accounts.into_iter().map(|a| {
+        Row::new(vec![
+            Cell::from(a.name.clone().unwrap().to_string()),
+            Cell::from(a.amount.clone().unwrap().to_string()),
+            Cell::from(if a.description.is_some() { a.description.clone().unwrap() } else { String::new() }),
+        ])
+    }).collect();
+
+
+    let width_table = [
+        Constraint::Percentage(30),
+        Constraint::Percentage(30),
+        Constraint::Length(40),
+    ];
 
     let block = block.title(" Accounts ").style( if active_block == HomeBlock::Accounts {home::SELECTED_BLOCK } else {Style::default()});
-   
-    
-    let list = List::new(list_items).block(block);
+
+    let table = Table::new(rows, width_table)
+        .block(block)
+        .header(Row::new(vec![
+            Cell::from("Name"),
+            Cell::from("Amount"),
+            Cell::from("Description"),
+        ]).style(Style::new().bold()));
 
 
-
-
-    
-
-
-    list
+    table
 }
-
-pub fn handle_home_key_event(manager: &mut TabManager<HomeBlock>, key: KeyEvent) {
-    match key.code {
+ pub fn handle_home_key_event(manager: &mut TabManager<HomeBlock>, key: KeyEvent) { match key.code {
         KeyCode::Tab => manager.next_block(),
         KeyCode::BackTab => manager.previous_block(),
 
@@ -203,8 +231,21 @@ pub fn handle_home_key_event(manager: &mut TabManager<HomeBlock>, key: KeyEvent)
     }
 }
 
-async fn draw_calendar<'a>(active_block: HomeBlock, block: Block<'a>) -> Block<'a> {
+/// Shows the data red when the daily budget is overuse else green
+async fn draw_calendar<'a>(active_block: HomeBlock, block: Block<'a>) -> Monthly<'a, CalendarEventStore> {
+
+    //todo!("Make it beatiful")
     let block = block.title(" Calendar ").style( if active_block == HomeBlock::Calendar {home::SELECTED_BLOCK } else {Style::default()});
-    
-    block
+
+
+    let mut start = OffsetDateTime::now_local().unwrap().date();
+
+    let cal: Monthly<CalendarEventStore> = Monthly::new(
+        OffsetDateTime::now_local().unwrap().date(),
+        CalendarEventStore::default()
+    ).show_surrounding(Style::default())
+        .show_month_header(Style::default())
+        .show_weekdays_header(Style::default()).block(block);
+
+    cal
 }

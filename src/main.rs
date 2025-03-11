@@ -23,7 +23,6 @@ async fn main() -> AppResult<()> {
     let _ = db::initialize_db_connection().await?;
    
     
-    
     let db = db::get_db_connection().await;
     
     // Create an application.
@@ -35,7 +34,6 @@ async fn main() -> AppResult<()> {
     let events = EventHandler::new(250);
     let mut tui = Tui::new(terminal, events);
     tui.init()?;
-
     // Start the main loop.
     while app.running {
         // Render the user interface.

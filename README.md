@@ -6,7 +6,11 @@ A tool to track expenses,
   - [ ] Implemenatation of Basic Widgets
       - [ ] Home
           - [ ] Account
-          - [ ] ...
+          - [ ] ...(design.excalidraw)
+      - [ ] Statistics
+      - [ ] Options
+        - [ ] Categorys
     
 ## Problems
- - [ ] When DB not aviable it doesbt start
+ - [ ] When DB not aviable it does not start
+ - [ ] Outside border is overlapping

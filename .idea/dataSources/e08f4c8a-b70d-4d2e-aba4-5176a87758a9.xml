@@ -3,15 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <Grants>1||-9223372036854775808|c|G
-1||10|c|G
-1||10|C|G
-1||10|T|G
-4||-9223372036854775808|c|G
-4||10|c|G
-4||10|C|G
-4||10|T|G</Grants>
-      <IntrospectionStateNumber>841</IntrospectionStateNumber>
+      <IntrospectionStateNumber>864</IntrospectionStateNumber>
       <ServerVersion>17.2</ServerVersion>
       <StartupTime>1741555336</StartupTime>
       <TimeZones>true ACDT
@@ -809,7 +801,7 @@ true posixrules
 13262||10|C|G
 13262||-9223372036854775808|U|G
 13262||10|U|G</Grants>
-      <IntrospectionStateNumber>841</IntrospectionStateNumber>
+      <IntrospectionStateNumber>864</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -5929,19 +5921,26 @@ true posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-03-07.19:35:34</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>864</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-03-11.07:50:14</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>532</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <schema id="265" parent="2" name="texpense">
-      <IntrospectionStateNumber>841</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-03-09.21:26:10</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>864</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-03-11.07:50:14</LastIntrospectionLocalTimestamp>
       <ObjectId>24644</ObjectId>
       <StateNumber>818</StateNumber>
       <OwnerName>postgres</OwnerName>
     </schema>
-    <sequence id="266" parent="265" name="account_id_account_seq">
+    <table id="266" parent="264" name="sigma">
+      <ObjectId>16390</ObjectId>
+      <StateNumber>763</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <sequence id="267" parent="265" name="account_id_account_seq">
       <ObjectId>24717</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -5949,7 +5948,7 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="267" parent="265" name="category_id_category_seq">
+    <sequence id="268" parent="265" name="category_id_category_seq">
       <ObjectId>24672</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -5957,7 +5956,7 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="268" parent="265" name="payment_id_payment_seq">
+    <sequence id="269" parent="265" name="payment_id_payment_seq">
       <ObjectId>24688</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -5965,7 +5964,7 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="269" parent="265" name="template_id_template_seq">
+    <sequence id="270" parent="265" name="template_id_template_seq">
       <ObjectId>24702</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -5973,7 +5972,7 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="270" parent="265" name="transaction_id_transaction_seq">
+    <sequence id="271" parent="265" name="transaction_id_transaction_seq">
       <ObjectId>24729</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -5981,37 +5980,67 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="271" parent="265" name="account">
+    <table id="272" parent="265" name="account">
       <ObjectId>24718</ObjectId>
       <StateNumber>835</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="272" parent="265" name="category">
+    <table id="273" parent="265" name="category">
       <ObjectId>24673</ObjectId>
       <StateNumber>826</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="273" parent="265" name="payment">
+    <table id="274" parent="265" name="payment">
       <ObjectId>24689</ObjectId>
-      <StateNumber>828</StateNumber>
+      <StateNumber>852</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="274" parent="265" name="template">
+    <table id="275" parent="265" name="template">
       <ObjectId>24703</ObjectId>
       <StateNumber>830</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="275" parent="265" name="transaction">
+    <table id="276" parent="265" name="transaction">
       <ObjectId>24730</ObjectId>
       <StateNumber>835</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="276" parent="271" name="id_account">
+    <column id="277" parent="266" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>763</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="278" parent="266" name="name">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>763</StateNumber>
+      <StoredType>text|0s</StoredType>
+      <TypeId>25</TypeId>
+    </column>
+    <index id="279" parent="266" name="sigma_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16395</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>763</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="280" parent="266" name="sigma_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16396</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>763</StateNumber>
+      <UnderlyingIndexId>16395</UnderlyingIndexId>
+    </key>
+    <column id="281" parent="272" name="id_account">
       <DefaultExpression>nextval(&apos;texpense.account_id_account_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -6020,26 +6049,26 @@ true posixrules
       <SequenceId>24717</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="277" parent="271" name="name">
+    <column id="282" parent="272" name="name">
       <Position>2</Position>
       <StateNumber>834</StateNumber>
       <StoredType>varchar|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="278" parent="271" name="amount">
+    <column id="283" parent="272" name="amount">
       <DefaultExpression>0</DefaultExpression>
       <Position>3</Position>
       <StateNumber>834</StateNumber>
       <StoredType>numeric(16,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
-    <column id="279" parent="271" name="description">
+    <column id="284" parent="272" name="description">
       <Position>4</Position>
       <StateNumber>834</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <index id="280" parent="271" name="account_pkey">
+    <index id="285" parent="272" name="account_pkey">
       <ColNames>id_account</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24725</ObjectId>
@@ -6048,7 +6077,7 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="281" parent="271" name="account_name_key">
+    <index id="286" parent="272" name="account_name_key">
       <ColNames>name</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24727</ObjectId>
@@ -6059,20 +6088,20 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="282" parent="271" name="account_pkey">
+    <key id="287" parent="272" name="account_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24726</ObjectId>
       <Primary>1</Primary>
       <StateNumber>834</StateNumber>
       <UnderlyingIndexId>24725</UnderlyingIndexId>
     </key>
-    <key id="283" parent="271" name="account_name_key">
+    <key id="288" parent="272" name="account_name_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24728</ObjectId>
       <StateNumber>834</StateNumber>
       <UnderlyingIndexId>24727</UnderlyingIndexId>
     </key>
-    <column id="284" parent="272" name="id_category">
+    <column id="289" parent="273" name="id_category">
       <DefaultExpression>nextval(&apos;texpense.category_id_category_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -6081,20 +6110,20 @@ true posixrules
       <SequenceId>24672</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="285" parent="272" name="name">
+    <column id="290" parent="273" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>826</StateNumber>
       <StoredType>varchar|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="286" parent="272" name="pre_category">
+    <column id="291" parent="273" name="pre_category">
       <Position>3</Position>
       <StateNumber>826</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="287" parent="272" name="category_pre_category_fkey">
+    <foreign-key id="292" parent="273" name="category_pre_category_fkey">
       <ColNames>pre_category</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24683</ObjectId>
@@ -6102,7 +6131,7 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>24673</RefTableId>
     </foreign-key>
-    <index id="288" parent="272" name="category_pkey">
+    <index id="293" parent="273" name="category_pkey">
       <ColNames>id_category</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24679</ObjectId>
@@ -6111,7 +6140,7 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="289" parent="272" name="category_name_key">
+    <index id="294" parent="273" name="category_name_key">
       <ColNames>name</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24681</ObjectId>
@@ -6122,20 +6151,20 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="290" parent="272" name="category_pkey">
+    <key id="295" parent="273" name="category_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24680</ObjectId>
       <Primary>1</Primary>
       <StateNumber>826</StateNumber>
       <UnderlyingIndexId>24679</UnderlyingIndexId>
     </key>
-    <key id="291" parent="272" name="category_name_key">
+    <key id="296" parent="273" name="category_name_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24682</ObjectId>
       <StateNumber>826</StateNumber>
       <UnderlyingIndexId>24681</UnderlyingIndexId>
     </key>
-    <column id="292" parent="273" name="id_payment">
+    <column id="297" parent="274" name="id_payment">
       <DefaultExpression>nextval(&apos;texpense.payment_id_payment_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -6144,26 +6173,47 @@ true posixrules
       <SequenceId>24688</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="293" parent="273" name="amount">
+    <column id="298" parent="274" name="amount">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>828</StateNumber>
       <StoredType>numeric(16,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
-    <column id="294" parent="273" name="category">
+    <column id="299" parent="274" name="category">
       <Position>3</Position>
       <StateNumber>828</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="295" parent="273" name="description">
+    <column id="300" parent="274" name="description">
       <Position>4</Position>
       <StateNumber>828</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <foreign-key id="296" parent="273" name="payment_category_fkey">
+    <column id="301" parent="274" name="label">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StateNumber>846</StateNumber>
+      <StoredType>varchar|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="302" parent="274" name="templatefk">
+      <Position>6</Position>
+      <StateNumber>848</StateNumber>
+      <StoredType>integer|0s</StoredType>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="303" parent="274" name="created_at">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StateNumber>852</StateNumber>
+      <StoredType>timestamp with time zone|0s</StoredType>
+      <TypeId>1184</TypeId>
+    </column>
+    <foreign-key id="304" parent="274" name="payment_category_fkey">
       <ColNames>category</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24697</ObjectId>
@@ -6171,7 +6221,14 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>24673</RefTableId>
     </foreign-key>
-    <index id="297" parent="273" name="payment_pkey">
+    <foreign-key id="305" parent="274" name="templatefk">
+      <ColNames>templatefk</ColNames>
+      <ObjectId>32836</ObjectId>
+      <StateNumber>850</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>24703</RefTableId>
+    </foreign-key>
+    <index id="306" parent="274" name="payment_pkey">
       <ColNames>id_payment</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24695</ObjectId>
@@ -6180,14 +6237,14 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="298" parent="273" name="payment_pkey">
+    <key id="307" parent="274" name="payment_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24696</ObjectId>
       <Primary>1</Primary>
       <StateNumber>828</StateNumber>
       <UnderlyingIndexId>24695</UnderlyingIndexId>
     </key>
-    <column id="299" parent="274" name="id_template">
+    <column id="308" parent="275" name="id_template">
       <DefaultExpression>nextval(&apos;texpense.template_id_template_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -6196,19 +6253,19 @@ true posixrules
       <SequenceId>24702</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="300" parent="274" name="payment">
+    <column id="309" parent="275" name="payment">
       <Position>2</Position>
       <StateNumber>830</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="301" parent="274" name="description">
+    <column id="310" parent="275" name="description">
       <Position>3</Position>
       <StateNumber>830</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <foreign-key id="302" parent="274" name="template_payment_fkey">
+    <foreign-key id="311" parent="275" name="template_payment_fkey">
       <ColNames>payment</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24711</ObjectId>
@@ -6216,7 +6273,7 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>24689</RefTableId>
     </foreign-key>
-    <index id="303" parent="274" name="template_pkey">
+    <index id="312" parent="275" name="template_pkey">
       <ColNames>id_template</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24709</ObjectId>
@@ -6225,14 +6282,14 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="304" parent="274" name="template_pkey">
+    <key id="313" parent="275" name="template_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24710</ObjectId>
       <Primary>1</Primary>
       <StateNumber>830</StateNumber>
       <UnderlyingIndexId>24709</UnderlyingIndexId>
     </key>
-    <column id="305" parent="275" name="id_transaction">
+    <column id="314" parent="276" name="id_transaction">
       <DefaultExpression>nextval(&apos;texpense.transaction_id_transaction_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -6241,25 +6298,25 @@ true posixrules
       <SequenceId>24729</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="306" parent="275" name="src_account">
+    <column id="315" parent="276" name="src_account">
       <Position>2</Position>
       <StateNumber>835</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="307" parent="275" name="dest_account">
+    <column id="316" parent="276" name="dest_account">
       <Position>3</Position>
       <StateNumber>835</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="308" parent="275" name="description">
+    <column id="317" parent="276" name="description">
       <Position>4</Position>
       <StateNumber>835</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <foreign-key id="309" parent="275" name="transaction_src_account_fkey">
+    <foreign-key id="318" parent="276" name="transaction_src_account_fkey">
       <ColNames>src_account</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24738</ObjectId>
@@ -6267,7 +6324,7 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>24718</RefTableId>
     </foreign-key>
-    <foreign-key id="310" parent="275" name="transaction_dest_account_fkey">
+    <foreign-key id="319" parent="276" name="transaction_dest_account_fkey">
       <ColNames>dest_account</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24743</ObjectId>
@@ -6275,7 +6332,7 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>24718</RefTableId>
     </foreign-key>
-    <index id="311" parent="275" name="transaction_pkey">
+    <index id="320" parent="276" name="transaction_pkey">
       <ColNames>id_transaction</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24736</ObjectId>
@@ -6284,7 +6341,7 @@ true posixrules
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="312" parent="275" name="transaction_pkey">
+    <key id="321" parent="276" name="transaction_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24737</ObjectId>
       <Primary>1</Primary>
