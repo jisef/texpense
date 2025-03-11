@@ -7,6 +7,7 @@ use crate::{
     handler::handle_key_events,
     tui::Tui,
 };
+use crate::cli::start_cli;
 
 pub mod app;
 pub mod event;
@@ -16,10 +17,19 @@ pub mod ui;
 pub mod entities;
 pub mod tab;
 mod db;
+mod cli;
 
 #[tokio::main]
 async fn main() -> AppResult<()> {
-    dotenv().ok();
+    /* for debugging checks if a db url is defined
+    let x = start_cli();
+    if x.is_err() {
+        println!("{}", x.err().unwrap());
+        Err("")?; // todo!("shows: Error: "" ") -> pass error message through
+    }*/
+    
+    // dotenv().ok(); // not really use
+    
     let _ = db::initialize_db_connection().await?;
    
     
