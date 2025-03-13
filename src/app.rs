@@ -1,6 +1,6 @@
 use std::error;
 use crossterm::event::KeyEvent;
-use crate::tab::home::{handle_home_key_event, HomeBlock};
+use crate::tab::home::{ Home};
 use crate::tab::statistics::{handle_statistics_key_event, StatisticsBlock};
 
 /// Application result type.
@@ -12,8 +12,8 @@ pub struct App {
     pub running: bool,
     pub active_tab: usize, // 0 = first tab, 1 = second tab, etc.
     pub tab_titles: Vec<String>,
-    pub home_manager: TabManager<HomeBlock>,
     pub statistics_manager: TabManager<StatisticsBlock>,
+    pub home: Home,
 }
 
 impl App {
@@ -28,8 +28,8 @@ impl App {
             running: true,
             active_tab: 0,
             tab_titles: titles.clone(),
-            home_manager: TabManager::new(HomeBlock::Calendar),
             statistics_manager: TabManager::new(StatisticsBlock::Overview),
+            home: Home::new() 
         }
     }
 
@@ -46,14 +46,6 @@ impl App {
             self.active_tab = self.tab_titles.len() - 1;
         } else {
             self.active_tab -= 1;
-        }
-    }
-
-    pub fn handle_key_events(&mut self, key: KeyEvent)  {
-        match self.active_tab {
-            0 => handle_home_key_event(&mut self.home_manager, key),
-            1 => handle_statistics_key_event(&mut self.statistics_manager, key),
-            _ => {}
         }
     }
 }

@@ -1,4 +1,3 @@
-use crossterm::event::{KeyCode, KeyEvent};
 use ratatui::{
     Frame,
     layout::{Constraint, Layout, Rect},
@@ -6,18 +5,36 @@ use ratatui::{
     style::{Color, Style},
     widgets::{Block, BorderType, Borders}
 };
-
 use ratatui::style::Stylize;
-use ratatui::widgets::{Cell, Row, Table};
+use ratatui::widgets::{Cell, Row, Table, Widget};
 use ratatui::widgets::calendar::{CalendarEventStore, Monthly};
 use sea_orm::{EntityTrait};
+
 use time::{OffsetDateTime};
 use account::Entity;
+use tui_textarea::TextArea;
 use crate::{db::get_db_connection, app::{App, TabBlock, TabManager}, entities::*, tab::home, entities};
+use ratatui_input::Input;
+
 
 pub const SELECTED_BLOCK: Style = Style::new().fg(Color::Cyan);
 
-/// Enum to toggle though the blocks
+/// Enum to toggle through the blocks
+pub struct Home {
+    pub manager: TabManager<HomeBlock>,
+    pub tf: bool,
+    pub type_tf: char
+}
+
+impl Home {
+    pub fn new() -> Home {
+        Home {
+            manager: TabManager::new(HomeBlock::Calendar),
+            tf: false,
+            type_tf: ' '
+        }
+    }
+}
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum HomeBlock {
     People,
@@ -60,10 +77,11 @@ impl TabBlock for HomeBlock {
 }
 
 pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
-    let active_block = app.home_manager.current_block; // Get active block
+    let active_block = app.home.manager.current_block; // Get active block
 
     let default_block = Block::default().borders(Borders::ALL).border_type(BorderType::Rounded);
-    
+
+
     let accounts = draw_accounts(active_block, default_block.clone());
     let payments = draw_payments(active_block, default_block.clone());
     let calendar = draw_calendar(active_block, default_block.clone());
@@ -102,6 +120,59 @@ pub async fn draw_home(frame: &mut Frame<'_>, area: Rect, app: &App) {
     frame.render_widget(calendar.await, left_layout[0]);
     frame.render_widget(accounts.await, left_layout[1]);
     frame.render_widget(people.await, left_layout[2]);
+
+    // POP-UP
+    if app.home.tf {
+        match active_block {
+            HomeBlock::People => {
+
+            },
+            HomeBlock::Accounts => {
+                match app.home.type_tf {
+                    'a' => { // ADD
+
+                        let centerd_popup = centered_rect(area.clone(), 35,10);
+                        let block = Block::default().borders(Borders::ALL).border_type(BorderType::Rounded).bg(Color::DarkGray);
+                        let mut text = TextArea::default();
+                        text.set_block(block);
+
+
+                        let input = Input::default();
+                        
+                        frame.render_widget(input, centerd_popup);
+                        /*
+                        let centerd_popup = centered_rect(area.clone(), 35,10);
+                        let block = Block::default().borders(Borders::ALL).border_type(BorderType::Rounded);
+                        frame.render_widget(block.clone(), centerd_popup);
+                        let mut tf_name  = TextArea::default();
+                        tf_name.set_placeholder_text(" Name ");
+
+                        let mut tf_description = TextArea::default();
+                        tf_description.set_placeholder_text(" Description ");
+
+                        let mut tf_amount = TextArea::default();
+                        tf_amount.set_placeholder_text(" Amount ");
+                        
+                        let layout = Layout::default().constraints(vec![
+                            Constraint::Percentage(20),
+                            Constraint::Percentage(20),
+                            Constraint::Percentage(60),
+                        ]).direction(Direction::Horizontal).split(block.inner(area));
+
+                        frame.render_widget(&tf_name, layout[0]);
+                        frame.render_widget(&tf_amount, layout[1]);
+                        frame.render_widget(&tf_description, layout[2]);*/
+                    }
+                    _ => {
+
+                    }
+                }
+            },
+            _ => {
+
+            }
+        }
+    }
 
 }
 
@@ -191,45 +262,6 @@ async fn draw_accounts<'a>(active_block: HomeBlock, block: Block<'a>) -> Table<'
 
     table
 }
- pub fn handle_home_key_event(manager: &mut TabManager<HomeBlock>, key: KeyEvent) { match key.code {
-        KeyCode::Tab => manager.next_block(),
-        KeyCode::BackTab => manager.previous_block(),
-
-        // Custom key bindings per block
-        KeyCode::Char('p') if manager.current_block == HomeBlock::People => {
-            println!("Adding a person...");
-        }
-        KeyCode::Char('d') if manager.current_block == HomeBlock::People => {
-            println!("Deleting a person...");
-        }
-        KeyCode::Char('n') if manager.current_block == HomeBlock::Payments => {
-            println!("Creating a new payment...");
-        }
-        KeyCode::Char('v') if manager.current_block == HomeBlock::Payments => {
-            println!("Viewing payment details...");
-        }
-        KeyCode::Char('a') if manager.current_block == HomeBlock::Calendar => {
-            println!("Adding an event to the calendar...");
-        }
-        KeyCode::Char('e') if manager.current_block == HomeBlock::Calendar => {
-            println!("Editing calendar event...");
-        }
-        KeyCode::Char('t') if manager.current_block == HomeBlock::Templates => {
-            println!("Loading a template...");
-        }
-        KeyCode::Char('s') if manager.current_block == HomeBlock::Templates => {
-            println!("Saving a template...");
-        }
-        KeyCode::Char('r') if manager.current_block == HomeBlock::Accounts => {
-            println!("Refreshing accounts...");
-        }
-        KeyCode::Char('m') if manager.current_block == HomeBlock::Accounts => {
-            println!("Managing accounts...");
-        }
-
-        _ => {}
-    }
-}
 
 /// Shows the data red when the daily budget is overuse else green
 async fn draw_calendar<'a>(active_block: HomeBlock, block: Block<'a>) -> Monthly<'a, CalendarEventStore> {
@@ -248,4 +280,46 @@ async fn draw_calendar<'a>(active_block: HomeBlock, block: Block<'a>) -> Monthly
         .show_weekdays_header(Style::default()).block(block);
 
     cal
+}
+
+
+fn centered_rect(area: Rect, percent_x: u16, percent_y: u16) -> Rect {
+    let popup_layout = Layout::default()
+        .direction(Direction::Vertical)
+        .constraints([
+            Constraint::Percentage((100 - percent_y) / 2),
+            Constraint::Percentage(percent_y),
+            Constraint::Percentage((100 - percent_y) / 2),
+        ])
+        .split(area);
+
+    Layout::default()
+        .direction(Direction::Horizontal)
+        .constraints([
+            Constraint::Percentage((100 - percent_x) / 2),
+            Constraint::Percentage(percent_x),
+            Constraint::Percentage((100 - percent_x) / 2),
+        ])
+        .split(popup_layout[1])[1]
+}
+
+fn get_add_account_block<'a>() -> Block<'a> {
+    let mut tf_name  = TextArea::default();
+    tf_name.set_placeholder_text(" Name ");
+
+    let mut tf_description = TextArea::default();
+    tf_description.set_placeholder_text(" Description ");
+
+    let mut tf_amount = TextArea::default();
+    tf_amount.set_placeholder_text(" Amount ");
+
+    let layout = Layout::default().constraints(vec![
+        Constraint::Percentage(10),
+        Constraint::Percentage(10),
+        Constraint::Percentage(80),
+    ]).direction(Direction::Horizontal);
+
+    let block = Block::default().title("SIGMA").borders(Borders::ALL).border_type(BorderType::Thick).border_type(BorderType::Rounded);
+
+    block
 }
