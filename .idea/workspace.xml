@@ -8,13 +8,8 @@
     <cargoProject FILE="$PROJECT_DIR$/migration/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="update schema code optim">
-      <change afterPath="$PROJECT_DIR$/src/cli.rs" afterDir="false" />
+    <list default="true" id="57924efb-160f-49da-aaff-eac35d9241cf" name="Changes" comment="updated README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +161,7 @@
       <workItem from="1741712477868" duration="57000" />
       <workItem from="1741720407691" duration="4158000" />
       <workItem from="1741724706075" duration="1757000" />
+      <workItem from="1741846800007" duration="2118000" />
     </task>
     <task id="LOCAL-00001" summary="added base ui">
       <option name="closed" value="true" />
